@@ -63,22 +63,39 @@ Step 1 - Please clone the repo
 
 Step 2 - Install requirements
 
-```yarn```
+```
+yarn
+```
 
-Step 3 - From .env file take/modify the MySQL user (db_user, db_pass) and add to your MySQL credentials
+Step 3 - Create a .env file and modify below:
+
+```
+REACT_APP_URL=http://localhost:8080/api/
+REACT_APP_PORT=3000
+DB_HOST=??? (localhost)
+DB_USER=???
+DB_PASS=???
+DB_NAME=???
+SERVER_PORT=8080
+```
 
 Step 4 - Run the Migration to ceate tables
 
-``` npx knex migrate:latest ```
+``` 
+npx knex migrate:latest 
+```
 
 Step 5 - (Optional) Seed the database
 
-``` npx knex seed:run ```
+``` 
+npx knex seed:run 
+```
 
 Step 6 - Have fun and please let me know your feedback
 
 
 ## API Reference
+
 
 
 ## 
