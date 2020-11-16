@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form/dist/index.ie11';
 
 const Update = () => {
 
