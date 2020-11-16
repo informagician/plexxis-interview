@@ -1,43 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import './styles/reset.css';
+import './styles/index.css';
 
-class App extends React.Component {
-  state = {
-    employees: []
-  }
-  
-  componentWillMount = () => {
-    fetch('http://localhost:8080/api/employees')
-      .then(response => response.json())
-      .then(employees => this.setState({ employees }))
-  }
+import Header from './components/Header';
+import Side from './components/Side';
+import Dashboard from './components/Dashboard';
+import List from './components/employees/List';
+import Add from './components/employees/Add'
+import Update from './components/employees/Update';
+import BranchList from './components/branches/BranchList';
+import ReactTable from './components/employees/ReactTable';
 
-  render() {
-    const {
-      employees
-    } = this.state;
+const App = () => {
+  const [ employees, setEmployees ] = useState([])
 
-    console.log(this.state);
-
-    return (
-      <div className="App">
-        <h1>Plexxis Employees</h1>
-        {
-          employees.map(employee => (
-            <div key={employee.id}>
-              {
-                Object.keys(employee).map(key => 
-                  <span key={key}>
-                    { key }:
-                    { employee[key] } 
-                  </span>
-                )
-              }
-            </div>
-          ))
-        }
+  return (
+    <div>
+    <Header />
+      <div className="page">
+        <Router>
+          <Side />
+          <div className="wrapper">
+            <Switch>
+              <Route path="/" exact>
+                <Dashboard />
+              </Route>
+              <Route path="/employees" exact>
+                <List setEmployees={setEmployees} employees={employees} />
+              </Route>
+              <Route exact path="/employees/add">
+                <Add />
+              </Route>
+              <Route exact path="/employees/:id">
+                <Update />
+              </Route>
+              <Route exact path="/branches">
+                <BranchList />
+              </Route>
+              <Route exact path="/react-table">
+                <ReactTable setEmployees={setEmployees} employees={employees}/>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;

@@ -1,31 +1,85 @@
 # Plexxis Interview Exercise
-## Requirements
-Create a simple but __impressive__ (looks good, works well, has intuitive design, etc.) CRUD application that can do the following:
+## About the project
+This project was an endeavour to satisfy Plexxis Software interview code challenge requirement.
 
-1) Retrieve employees from a REST API  
-2) Display the employees in a React application  
-3) Has UI mechanisms for creating and deleting employees  
-4) Has API endpoints for creating and deleting employees  
-5) Edit your version of the `README.md` file to explain to us what things you did, where you focussed your effort, etc.
+It can be viewed live on (Heroku)[]
 
-*Read over the `Bonus` objectives and consider tackling those items as well*
+Even though this is a working code, I DO NOT claim it to be perfectly written or to be secure. There is still a lot to be done and improvements that can be made in regards to security, performance, testing, aesthetics and user experience. My time budget of 16 hours allowed me to accomplish this much.
 
-## Bonus (Highly Encouraged)
+Working with [React Table](https://react-table.tanstack.com/) was specifically fun.
 
-1) Use a relational database to store the data (SQLite, MariaDB, Postgres)  
-2) UI mechanisms to edit/update employee data  
-3) Add API endpoint to update employee data  
-4) Use [React Table](https://react-table.js.org)  
+Please read the __IMPORTANT__ section of this document for more information.
 
-## Getting Started
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). The front-end app runs off localhost:3000. The REST API is located in the /server folder and runs off localhost:8080. The data is being served from a JSON file located in the /server/data folder. Run `npm start` to start both servers.
+## Screenshots
 
-## Getting it Done
-* You are free to use whatever libraries that you want. Be prepared to defend your decisions.
-* There is no time limit. Use as little or as much time as is necessary to showcase your abilities.
-* You should fork or clone our repository into your own repository.
-  * Send us the link when you are done the exercise (pglinker at plexxis dot com).
 
-If you do well on the test, we will bring you in for an interview. Your test results will be used as talking points.  
+## Tech Stack
 
- __This is your chance to amaze us with your talent!__
+- [React](https://reactjs.org/)
+- [Node.js](https://nodejs.org/en/) + [Express js](https://expressjs.com/)
+- MySQL
+- [React Router](https://reactrouter.com/): to manage routes, history etc.
+- [Axios](https://github.com/axios/axios): promise based HTTP client
+- [Knex](http://knexjs.org/): SQL query builder for MySQL, all migration, seeding and models are written with knex syntax
+- [React Hook Form](https://react-hook-form.com/): forms and validation
+- [Font Awesome](https://fontawesome.com/)
+- [React Table](https://react-table.tanstack.com/)
+
+## IMPORTANT 
+Due to a git complication (my mistake), I lost my branch and all atomic commits. I copied all the code to a new repo to push. I commit often!
+
+Considering time constraints and nature of presentational data (tables), I did not make the application responsive. Also some accessibility best practices were not baked into code.
+
+
+## TODO
+Before taking the app for drive, I would like to share my opinion about features to be added or bugs to be fixed:
+
+### Feature
+- Add Sign in/out (authentication)
+
+### Backend and Database
+- Rate limiter
+- API KEY
+- Data validation
+- Migrate to Postgres (Tinyint issue)
+- Write test
+- ...
+
+### Frontend
+- API KEY
+- Make responsive based on use case
+- Make accessible
+- Add more filtering, pagination, search and more table utilities
+- More validation on forms: Regex (color, code), City (Google), Color names (web colors?)
+- Write test
+- Migrate to SCSS/LESS
+- ...
+
+## Installation
+
+Step 0 - You'll need to have Node and MySQL installed on your machine.
+
+Step 1 - Please clone the repo
+
+Step 2 - Install requirements
+
+```yarn```
+
+Step 3 - From .env file take/modify the MySQL user (db_user, db_pass) and add to your MySQL credentials
+
+Step 4 - Run the Migration to ceate tables
+
+``` npx knex migrate:latest ```
+
+Step 5 - (Optional) Seed the database
+
+``` npx knex seed:run ```
+
+Step 6 - Have fun and please let me know your feedback
+
+
+## API Reference
+
+
+## 
+

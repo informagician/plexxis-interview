@@ -4,13 +4,25 @@
   "license": "None provided",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.12",
+    "axios": "^0.21.0",
     "concurrently": "^3.6.0",
     "cors": "^2.8.4",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "knex": "^0.21.12",
+    "mysql": "^2.18.1",
     "nodemon": "^1.17.5",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^6.11.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "1.1.4",
+    "react-table": "^7.6.2"
   },
   "scripts": {
     "start": "concurrently --kill-others \"node server\" \"npm run start:react-app\"",
