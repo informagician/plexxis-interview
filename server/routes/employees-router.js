@@ -3,13 +3,12 @@ const Employees = require('../models/employees-model')
 const cors = require('cors')
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: '*',
     optionsSuccessStatus: 200
 }
 
 // GET ALL EMPLOYEES
 router.get('/', cors(corsOptions),(req,res,next) => {
-    // console.log(req)
     Employees.list()
         .then(employees => {
             res.setHeader('Content-Type', 'application/json');
@@ -43,7 +42,6 @@ router.post('/add',cors(corsOptions),(req,res,next) => {
     } else if (employee.assigned === "false") {
         employee.assigned = 0
     }
-    console.log(employee)
     Employees.add(employee)
         .then(success => {
             res.status(201).json(success)
@@ -57,10 +55,8 @@ router.post('/add',cors(corsOptions),(req,res,next) => {
 // EMPLOYEE CODE DUPLICATE CHECKER
 router.post('/by/code', cors(corsOptions), (req,res,next) => {
     const code = req.body;
-    console.log(code)
     Employees.findByCode(code)
         .then(code => {
-            console.log(code)
             res.status(200).json(code)
         })
         .catch(err => {
@@ -71,7 +67,6 @@ router.post('/by/code', cors(corsOptions), (req,res,next) => {
 // DELETE EMPLOYEE
 router.delete('/:id', cors(corsOptions), (req,res,next) => {
     const id = req.params.id;
-    console.log(id)
     Employees.del(id)
         .then(data => {
             res.status(200).end()

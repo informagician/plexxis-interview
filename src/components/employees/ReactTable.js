@@ -12,7 +12,6 @@ const ReactTable = props => {
     useEffect(() => {
         axios.get(process.env.REACT_APP_URL + 'employees')
             .then(res => {
-                console.log(res.data)
                 props.setEmployees(res.data)
             })
             .catch(err => console.log(err))

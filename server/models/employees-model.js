@@ -50,7 +50,6 @@ function findById(employeeId) {
 }
 
 function findByCode(field) {
-    console.log('MODEL',field.code)
     return db('employees')
         .select('*')
         .where('code', 'like', `%${field.code}%`)

@@ -21,11 +21,9 @@ const Add = () => {
     }
 
     useEffect(() => {
-        console.log(code)
         if(code) {
             axios.post(process.env.REACT_APP_URL + 'employees/by/code', {code:code})
                 .then(res => {
-                    console.log('RES',res)
                     if(res.data.length !== 0){
                         setCodeError(true)
                     } else {
@@ -51,8 +49,6 @@ const Add = () => {
     const handleCode = e => {
         setCode(e.target.value)
     }
-
-    console.log(errors)
 
     return(
         <div className="container">

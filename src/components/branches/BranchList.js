@@ -9,8 +9,6 @@ const BranchList = () => {
     const [ branches, setBranches ] = useState([])
     const [ newBranch, setNewBranch ] = useState("")
 
-    console.log(process.env.REACT_APP_URL + 'branches')
-
     useEffect(() => {
         axios.get(process.env.REACT_APP_URL + 'branches')
             .then(res => {
