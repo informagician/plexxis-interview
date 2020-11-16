@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "license": "None provided",
   "private": true,
+  "engines": {
+    "node":"12.16.1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
