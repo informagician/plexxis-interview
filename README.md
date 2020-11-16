@@ -12,6 +12,14 @@ Please read the __IMPORTANT__ section of this document for more information.
 
 ## Screenshots
 
+Dashboard
+
+![Dashboard](https://raw.githubusercontent.com/informagician/plexxis-interview/main/public/images/dashboard.png "Dashboard")
+
+![Employees](https://raw.githubusercontent.com/informagician/plexxis-interview/main/public/images/employees.png "Employees")
+
+![Branches](https://raw.githubusercontent.com/informagician/plexxis-interview/main/public/images/branch.png "Branches")
+
 
 ## Tech Stack
 
@@ -96,7 +104,89 @@ Step 6 - Have fun and please let me know your feedback
 
 ## API Reference
 
+I broke the data into two parts, employees and branches. Each have their own table and API end points.
+Since there is no signin, no headers need to be set.
 
+### Employees endpoints
 
-## 
+Get a list all employees
+```
+GET request to /employees
 
+returns
+{
+  name: String,
+  code: String,
+  profession: String,
+  color: String,
+  city: String,
+  branch_id: Int,
+  assigned: Boolean (0 and 1)
+  branch_name: String (joined in model)
+}
+```
+
+Get employee by Id
+```
+Get request to /employees/:id
+```
+
+Add an employee
+```
+Post request to /employees
+{
+  name: String,
+  code: String,
+  profession: String,
+  color: String,
+  city: String,
+  branch_id: Int,
+  assigned: Boolean (true and false values will be converted to 0 and 1)
+}
+```
+
+Check if employee code already exists
+```
+Post request to /employees/by/code
+{
+  code: String
+}
+```
+
+Delete employee
+```
+Delete request to /employees/:id
+```
+
+Update employee
+```
+Put request to /employees/:id
+
+{
+  name: String,
+  code: String,
+  profession: String,
+  color: String,
+  city: String,
+  branch_id: Int,
+  assigned: Boolean (true and false values will be converted to 0 and 1)
+}
+```
+
+### Branch endpoints
+
+There are only two end points right now. no headers needed
+
+Get list of branches
+```
+Get request to /branches
+```
+
+Add a new branch
+```
+Post request to /branches
+
+{
+  branch_name: String
+}
+```
