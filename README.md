@@ -4,7 +4,7 @@ This project was an endeavour to satisfy Plexxis Software interview code challen
 
 It can be viewed live on (Heroku)[]
 
-Even though this is a working code, I DO NOT claim it to be perfectly written or to be secure. There is still a lot to be done and improvements that can be made in regards to security, performance, testing, aesthetics and user experience. My time budget of 16 hours allowed me to accomplish this much.
+Even though this is a working code, I DO NOT claim it to be perfectly written or to be secure. There is still a lot to be done and improvements can be made in regards to security, performance, testing, aesthetics and user experience. My time budget of 16 hours allowed me to accomplish this much.
 
 Working with [React Table](https://react-table.tanstack.com/) was specifically fun.
 
@@ -12,7 +12,7 @@ Please read the __IMPORTANT__ section of this document for more information.
 
 ## Screenshots
 
-Dashboard
+Below are some screenshots of the working app.
 
 ![Dashboard](https://raw.githubusercontent.com/informagician/plexxis-interview/main/public/images/dashboard.png "Dashboard")
 
@@ -22,6 +22,8 @@ Dashboard
 
 
 ## Tech Stack
+
+Due to some compatibility issues, I upgraded React and ReactDOM to latest versions. And to speed up my development I used hooks instead of lifecycle components.
 
 - [React](https://reactjs.org/)
 - [Node.js](https://nodejs.org/en/) + [Express js](https://expressjs.com/)
