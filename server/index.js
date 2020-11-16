@@ -19,4 +19,4 @@ app.use('/api/employees', employeesRouter)
 app.use('/api/branches', branchesRouter)
 
 
-app.listen(process.env.SERVER_PORT, () => console.log('Job Dispatch API running on port' + process.env.SERVER_PORT))
+app.listen(process.env.PORT, () => console.log('Job Dispatch API running on port' + process.env.SERVER_PORT))
