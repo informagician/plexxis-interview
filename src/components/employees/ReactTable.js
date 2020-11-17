@@ -95,11 +95,15 @@ const ReactTable = props => {
             },
             {
                 Header: 'Update',
-                accessor: 'col9'
+                accessor: 'col9',
+                disableFilters: true,
+                disableSortBy: true
             },
             {
                 Header: 'Delete',
-                accessor: 'col10'
+                accessor: 'col10',
+                disableFilters: true,
+                disableSortBy: true
             }
         ],
         []
