@@ -19,15 +19,24 @@ const App = () => {
   const displayWindowSize = () => {
     let w = document.documentElement.clientWidth;
     w < 1400 ? setMenu(false) : setMenu(true)
+    if(w < 1400 && menu){
+      setMenu(false)
+    }
   }
   
   window.addEventListener('resize', displayWindowSize);
-  window.addEventListener('load', displayWindowSize)
+  window.addEventListener('load', displayWindowSize);
+
+  const el = document.getElementById('page');
+  
+  if(el){
+    el.addEventListener('click', displayWindowSize)
+  }
 
   return (
     <div>
     <Header setMenu={setMenu} menu={menu} />
-      <div className="page">
+      <div className="page" id="page">
         <Router>
           {menu && <Side />}
           <div className="wrapper">
