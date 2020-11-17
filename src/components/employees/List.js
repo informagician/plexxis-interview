@@ -38,60 +38,61 @@ const List = props => {
                 <h1>List of Employees</h1>
                 <input type="button" value="New" onClick={handleNewEmployee}/>
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th>Profession</th>
-                        <th>Color</th>
-                        <th>Branch</th>
-                        <th>City</th>
-                        <th>Assigned</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.employees.length > 0 ? (
-                        // eslint-disable-next-line
-                        props.employees.map(employee => (
-                            <tr key={employee.id}>
-                                <td>{employee.id}{employee.index}</td>
-                                <td>{employee.name}</td>
-                                <td>{employee.code}</td>
-                                <td>{employee.profession}</td>
-                                <td>{employee.color}</td>
-                                <td>{employee.branch_name}</td>
-                                <td>{employee.city}</td>
-                                <td className="center">{employee.assigned ? "Yes" : "No"}</td>
-                                <td className="center">
-                                    <FontAwesomeIcon 
-                                        icon={faEdit}
-                                        className="icon" 
-                                        onClick={() => handleUpdateEmployee(employee.id)} 
-                                    />
-                                </td>
-                                <td className="center">
-                                    <FontAwesomeIcon 
-                                        icon={faTrashAlt}
-                                        className="icon" 
-                                        onClick={() => handleDeleteEmployee(employee.id)} 
-                                    />
+            <div className="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Code</th>
+                            <th>Profession</th>
+                            <th>Color</th>
+                            <th>Branch</th>
+                            <th>City</th>
+                            <th>Assigned</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.employees.length > 0 ? (
+                            // eslint-disable-next-line
+                            props.employees.map(employee => (
+                                <tr key={employee.id}>
+                                    <td>{employee.id}{employee.index}</td>
+                                    <td>{employee.name}</td>
+                                    <td>{employee.code}</td>
+                                    <td>{employee.profession}</td>
+                                    <td>{employee.color}</td>
+                                    <td>{employee.branch_name}</td>
+                                    <td>{employee.city}</td>
+                                    <td className="center">{employee.assigned ? "Yes" : "No"}</td>
+                                    <td className="center">
+                                        <FontAwesomeIcon 
+                                            icon={faEdit}
+                                            className="icon" 
+                                            onClick={() => handleUpdateEmployee(employee.id)} 
+                                        />
+                                    </td>
+                                    <td className="center">
+                                        <FontAwesomeIcon 
+                                            icon={faTrashAlt}
+                                            className="icon" 
+                                            onClick={() => handleDeleteEmployee(employee.id)} 
+                                        />
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td>
+                                <p>No Employees Found.</p>
                                 </td>
                             </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td>
-                            <p>No Employees Found.</p>
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

@@ -14,13 +14,22 @@ import ReactTable from './components/employees/ReactTable';
 
 const App = () => {
   const [ employees, setEmployees ] = useState([])
+  const [ menu, setMenu ] = useState()
+  
+  const displayWindowSize = () => {
+    let w = document.documentElement.clientWidth;
+    w < 1400 ? setMenu(false) : setMenu(true)
+  }
+  
+  window.addEventListener('resize', displayWindowSize);
+  window.addEventListener('load', displayWindowSize)
 
   return (
     <div>
-    <Header />
+    <Header setMenu={setMenu} menu={menu} />
       <div className="page">
         <Router>
-          <Side />
+          {menu && <Side />}
           <div className="wrapper">
             <Switch>
               <Route path="/" exact>

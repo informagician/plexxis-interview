@@ -222,6 +222,10 @@ button {
 
 /* UI ELEMENTS */
 
+.hamburger {
+  display: none;
+}
+
 .cards {
   display: flex;
 }
@@ -272,4 +276,36 @@ nav a {
   margin-left: 2rem;
   color: #333;
   text-decoration: none;
+}
+
+
+@media only screen and (max-width: 1400px) {
+
+  .hamburger {
+    display: block;
+    font-size: 1.5rem;
+    align-self: center;
+    color: #DDD;
+    cursor: pointer; 
+  }
+
+  .wrapper {
+    width: calc(100vw - 240px);
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .side {
+    width: 240px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .table-wrapper {
+    overflow-x: scroll;
+  }
 }

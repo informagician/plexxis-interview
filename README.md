@@ -27,7 +27,7 @@ Due to some compatibility issues, I upgraded React and ReactDOM to latest versio
 
 - [React](https://reactjs.org/)
 - [Node.js](https://nodejs.org/en/) + [Express js](https://expressjs.com/)
-- MySQL
+- MariaDB
 - [React Router](https://reactrouter.com/): to manage routes, history etc.
 - [Axios](https://github.com/axios/axios): promise based HTTP client
 - [Knex](http://knexjs.org/): SQL query builder for MySQL, all migration, seeding and models are written with knex syntax
