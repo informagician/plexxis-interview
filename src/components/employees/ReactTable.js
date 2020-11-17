@@ -119,8 +119,8 @@ const ReactTable = props => {
             <div className="table-action">
                 <h1>React Table Employee List</h1>
             </div>
-            {
-                data.length > 0 ? (
+            <div className="table-wrapper">
+                {data.length > 0 ? (
                     <table {...getTableProps()}>
                         <thead>
                             {headerGroups.map(headerGroup => (
@@ -168,8 +168,8 @@ const ReactTable = props => {
                     </table>
                 ) : (
                     <p>Loading...</p>
-                )
-            }
+                )}
+            </div>
             
         </div>
     )
