@@ -14,7 +14,7 @@ router.get('/', cors(corsOptions), (req,res,next) => {
             res.status(200).json(branches)
         })
         .catch(err => {
-            res.status(404).json({ errorMessage: "Could not find any branches"})
+            res.status(500).json({ errorMessage: err})
         })
 })
 
@@ -26,7 +26,7 @@ router.post('/', cors(corsOptions), (req,res,next) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            res.status(404).json({ errorMessage: "Could not insert the branch"})
+            res.status(500).json({ errorMessage: err})
         })
 })
 

@@ -17,7 +17,7 @@ router.get('/', cors(corsOptions),(req,res,next) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({message: 'Something went wrong getting the list of employees!'})
+            res.status(500).json({errorMessage: err})
         })
 })
 
@@ -30,13 +30,14 @@ router.get('/:id', cors(corsOptions),(req,res,next) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({message: 'Something went wrong getting the list of employees!'})
+            res.status(500).json({errorMessage: err})
         })
 })
 
 // ADD EMPLOYEE
-router.post('/add',cors(corsOptions),(req,res,next) => {
+router.post('/add',cors(corsOptions),validateCode,validateNewEmployee, (req,res) => {
     let employee = req.body;
+
     if (employee.assigned === "true") {
         employee.assigned = 1
     } else if (employee.assigned === "false") {
@@ -48,7 +49,7 @@ router.post('/add',cors(corsOptions),(req,res,next) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({message: 'Something went wrong inserting a new employee!'})
+            res.status(500).json({errorMessage: err})
         })
 })
 
@@ -60,7 +61,7 @@ router.post('/by/code', cors(corsOptions), (req,res,next) => {
             res.status(200).json(code)
         })
         .catch(err => {
-            res.status(404)
+            res.status(404).json({errorMessage: err})
         })
 })
 
@@ -72,7 +73,7 @@ router.delete('/:id', cors(corsOptions), (req,res,next) => {
             res.status(200).end()
         })
         .catch(err => {
-            res.status(404).json({message: "Item was not found"})
+            res.status(404).json({errorMessage: err})
         })
 })
 
@@ -90,9 +91,42 @@ router.put('/:id', cors(corsOptions), (req,res,next) => {
             res.status(201).json({message: "item was updated"})
         })
         .catch(err => {
-            res.status(500).json({errorMessage: "Something bad happened during update"})
+            res.status(500).json({errorMessage: err})
         })
 })
+
+// MIDDLEWARE
+function validateNewEmployee(req,res,next){
+    const body = req.body;
+
+    if(Object.keys(body).length === 0){
+        res.status(400).json({message: "Missing employee data"});
+    } else if(!body.name) {
+        res.status(400).json({message: "Missing employee name"});
+    } else if(!body.branch_id){
+        res.status(400).json({message: "Missing employee branch identifier"});
+    } else if(!body.code){
+        res.status(400).json({message: "Missing employee code"});
+    } else if(!body.profession){
+        res.status(400).json({message: "Missing employee profession"});
+    } else if(!body.city){
+        res.status(400).json({message: "Missing employee city"});
+    } else if(!body.assigned){
+        res.status(400).json({message: "Missing employee assignment"});
+    }
+    next();
+}
+
+function validateCode(req,res,next) {
+    const code = req.body.code
+    const regex = /^([F])([0-9][0-9][0-9])/
+    
+    if(!code.match(regex)){
+        res.status(400).json({message: "Code format should be F###"})
+    }
+    next();
+}
+
 module.exports = router;
 
 // app.get('/api/employees', cors(corsOptions), (req, res, next) => {
