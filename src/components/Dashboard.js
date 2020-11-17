@@ -13,11 +13,15 @@ const Dashboard = () => {
 
     const today = new Date();
     const hh = today.getHours();
-    const mm = today.getMinutes();
+    let mm = today.getMinutes();
     const day = today.getDay();
     const month = today.getMonth();
     const date = today.getDate();
     const year = today.getFullYear();
+
+    if (mm < 10) {
+        mm = "0" + mm
+    }
 
 
     return(
