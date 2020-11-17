@@ -8,15 +8,15 @@ var corsOptions = {
   optionsSuccessStatus: 200
 }
 
-app.use(cors(corsOptions))
-app.use(express.json())
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // Routes
-const employeesRouter = require('./routes/employees-router')
-const branchesRouter = require('./routes/branches-router')
+const employeesRouter = require('./routes/employees-router');
+const branchesRouter = require('./routes/branches-router');
 
-app.use('/api/employees', employeesRouter)
-app.use('/api/branches', branchesRouter)
+app.use('/api/employees', cors(corsOptions), employeesRouter);
+app.use('/api/branches', cors(corsOptions), branchesRouter);
 
 
-app.listen(process.env.PORT || 8080, () => console.log('Job Dispatch API running on port' + process.env.SERVER_PORT))
+app.listen(process.env.PORT || 8080, () => console.log('Job Dispatch API running on port' + process.env.SERVER_PORT));

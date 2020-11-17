@@ -1,19 +1,11 @@
 const router = require('express').Router()
 const Employees = require('../models/employees-model')
-const cors = require('cors')
-
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200
-}
 
 // GET ALL EMPLOYEES
-router.get('/', cors(corsOptions),(req,res,next) => {
+router.get('/',(req,res) => {
     Employees.list()
         .then(employees => {
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200)
-            res.send(JSON.stringify(employees, null, 2));
+            res.status(200).json(employees)
         })
         .catch(err => {
             console.log(err)
@@ -22,7 +14,7 @@ router.get('/', cors(corsOptions),(req,res,next) => {
 })
 
 // GET EMPLOYEE BY ID
-router.get('/:id', cors(corsOptions),(req,res,next) => {
+router.get('/:id', (req,res) => {
     const employeeId = req.params.id
     Employees.findById(employeeId)
         .then(employees => {
@@ -35,7 +27,7 @@ router.get('/:id', cors(corsOptions),(req,res,next) => {
 })
 
 // ADD EMPLOYEE
-router.post('/add',cors(corsOptions),validateCode,validateNewEmployee, (req,res) => {
+router.post('/add', validateCode, validateNewEmployee, (req,res) => {
     let employee = req.body;
 
     if (employee.assigned === "true") {
@@ -54,7 +46,7 @@ router.post('/add',cors(corsOptions),validateCode,validateNewEmployee, (req,res)
 })
 
 // EMPLOYEE CODE DUPLICATE CHECKER
-router.post('/by/code', cors(corsOptions), (req,res,next) => {
+router.post('/by/code', (req,res) => {
     const code = req.body;
     Employees.findByCode(code)
         .then(code => {
@@ -66,7 +58,7 @@ router.post('/by/code', cors(corsOptions), (req,res,next) => {
 })
 
 // DELETE EMPLOYEE
-router.delete('/:id', cors(corsOptions), (req,res,next) => {
+router.delete('/:id', (req,res) => {
     const id = req.params.id;
     Employees.del(id)
         .then(data => {
@@ -78,7 +70,7 @@ router.delete('/:id', cors(corsOptions), (req,res,next) => {
 })
 
 // UPDATE EMPLOYEE
-router.put('/:id', cors(corsOptions), (req,res,next) => {
+router.put('/:id', (req,res) => {
     const id = req.params.id;
     let employee = req.body;
     if (employee.assigned === "true") {
@@ -96,6 +88,8 @@ router.put('/:id', cors(corsOptions), (req,res,next) => {
 })
 
 // MIDDLEWARE
+
+// Check each employee field
 function validateNewEmployee(req,res,next){
     const body = req.body;
 
@@ -117,6 +111,7 @@ function validateNewEmployee(req,res,next){
     next();
 }
 
+// check code structure
 function validateCode(req,res,next) {
     const code = req.body.code
     const regex = /^([F])([0-9][0-9][0-9])/
