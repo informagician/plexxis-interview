@@ -2,7 +2,7 @@
 ## About the project
 This project was an endeavour to satisfy Plexxis Software interview code challenge requirement.
 
-It can be viewed live on (Plexxis Demo)[http://plexxis.informagician.com]. Its an Ubuntu server with MariaDB and Nginx to proxy both the react app and the API endpoints.
+It can be viewed live on [Plexxis Demo](http://plexxis.informagician.com). Its an Ubuntu server with MariaDB and Nginx to proxy both the react app and the API endpoints.
 
 Even though this is a working code, I DO NOT claim it to be perfectly written or to be secure. There is still a lot to be done and improvements can be made in regards to security, performance, testing, aesthetics and user experience. My time budget of 16 hours allowed me to accomplish this much.
 
@@ -57,7 +57,7 @@ Before taking the app for drive, I would like to share my opinion about features
 
 ### Frontend
 - API KEY
-- Make responsive based on use case
+- Make MORE responsive based on use case 
 - Make accessible
 - Add more filtering, pagination, search and more table utilities
 - More validation on forms: Regex (color, code), City (Google), Color names (web colors?)
