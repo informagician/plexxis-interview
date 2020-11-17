@@ -113,6 +113,10 @@ thead > tr {
   background-color: #DDD;
 }
 
+tr > td:first-child, tr > th:first-child {
+  padding-left: 25px;
+}
+
 tr:nth-of-type(even) {
   background-color: #F0F0F0;
 }

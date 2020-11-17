@@ -1,7 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTable, useSortBy } from 'react-table';
-// import GlobalFilter from './GlobalFilter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
@@ -20,6 +19,10 @@ const ReactTable = props => {
             })
             .catch(err => console.log(err))
     },[])
+
+    const handleNewEmployee = () => {
+        history.push('/employees/add')
+    }
 
     const handleDeleteEmployee = id => {
         axios.delete(process.env.REACT_APP_URL + 'employees/' + id)
@@ -91,19 +94,22 @@ const ReactTable = props => {
             },
             {
                 Header: 'Assigned',
-                accessor: 'col8'
+                accessor: 'col8',
+                className: 'center'
             },
             {
                 Header: 'Update',
                 accessor: 'col9',
                 disableFilters: true,
-                disableSortBy: true
+                disableSortBy: true,
+                className: 'center'
             },
             {
                 Header: 'Delete',
                 accessor: 'col10',
                 disableFilters: true,
-                disableSortBy: true
+                disableSortBy: true,
+                className: 'center'
             }
         ],
         []
@@ -115,47 +121,16 @@ const ReactTable = props => {
         headerGroups,
         rows,
         prepareRow,
-        // state,
-        // visibleColumns,
-        // preGlobalFilteredRows,
-        // setGlobalFilter,
     } = useTable(
         { columns, data }, 
-        // useFilters, 
-        // useGlobalFilter, 
         useSortBy
     )
-
-    // function GlobalFilter({
-    //     preGlobalFilteredRows,
-    //     globalFilter,
-    //     setGlobalFilter,
-    //   }) {
-    //     const count = preGlobalFilteredRows.length
-    //     const [value, setValue] = useState(globalFilter)
-    //     const onChange = useAsyncDebounce(value => {
-    //       setGlobalFilter(value || undefined)
-    //     }, 200)
-      
-    //     return (
-    //       <span>
-    //         Search:{' '}
-    //         <input
-    //           value={value || ""}
-    //           onChange={e => {
-    //             setValue(e.target.value);
-    //             onChange(e.target.value);
-    //           }}
-    //           placeholder={`${count} records...`}
-    //         />
-    //       </span>
-    //     )
-    //   }
     
     return (
         <div className="container">
             <div className="table-action">
                 <h1>React Table Employee List</h1>
+                <input type="button" value="New" onClick={handleNewEmployee}/>
             </div>
             <div className="table-wrapper">
                 {data.length > 0 ? (
@@ -177,15 +152,6 @@ const ReactTable = props => {
                                     ))}
                                 </tr>
                             ))}
-                            {/* <tr>
-                                <th colSpan={visibleColumns.length}>
-                                    <GlobalFilter 
-                                        preGlobalFilteredRows={preGlobalFilteredRows}
-                                        globalFilter={state.globalFilter}
-                                        setGlobalFilter={setGlobalFilter}
-                                    />
-                                </th>
-                            </tr> */}
                         </thead>
                         <tbody {...getTableBodyProps()}>
                             {rows.map(row => {
@@ -194,7 +160,9 @@ const ReactTable = props => {
                                     <tr {...row.getRowProps()}>
                                         {row.cells.map(cell => {
                                             return (
-                                                <td {...cell.getCellProps()}>
+                                                <td {...cell.getCellProps([{
+                                                    className: cell.column.className
+                                                }])}>
                                                     {cell.render('Cell')}
                                                 </td>
                                             )
