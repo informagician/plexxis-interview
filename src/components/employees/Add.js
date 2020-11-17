@@ -11,7 +11,7 @@ const Add = () => {
     const [ color, setColor ] = useState();
     const [ code, setCode ] = useState();
     const [ branches, setBranches ] = useState([]);
-    const [ codeError, setCodeError ] = useState(false);
+    const [ codeError, setCodeError ] = useState(true);
     const onSubmit = values => {
         axios.post(process.env.REACT_APP_URL + 'employees/add', values)
             .then(res => {
@@ -61,10 +61,21 @@ const Add = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="code">Code</label>
-                    <input type="text" name="code" id="code" ref={register({ required: true })} onChange={e => handleCode(e)} />
+                    <input 
+                        type="text" 
+                        name="code" 
+                        id="code" 
+                        ref={register({ 
+                            required: true, 
+                            pattern: /^([F])([0-9][0-9][0-9])/, 
+                            validate: async value => await codeError === false
+                        })} 
+                        onChange={e => handleCode(e)} 
+                    />
                     <div className="form-error">
-                        {codeError && "Code must be unique!"}
-                        {errors.code && "Code is Required!"}
+                        {(errors.code && errors.code.type === "required") && "Code is Required!"}
+                        {(errors.code && errors.code.type === "pattern") && "Code must match F### pattern"}
+                        {(errors.code && errors.code.type === "validate") && "Code must be unique"}
                     </div>
                 </div>
                 <div className="form-group">
