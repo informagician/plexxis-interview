@@ -1,11 +1,15 @@
 import React, { useMemo, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useTable, useSortBy } from 'react-table';
 // import GlobalFilter from './GlobalFilter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
 
 const ReactTable = props => {
+
+    let history = useHistory()
 
     const [ data, setData ] = useState([])
 
@@ -17,6 +21,18 @@ const ReactTable = props => {
             .catch(err => console.log(err))
     },[])
 
+    const handleDeleteEmployee = id => {
+        axios.delete(process.env.REACT_APP_URL + 'employees/' + id)
+            .then(res => {
+                history.go(0)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleUpdateEmployee = id => {
+        history.push('/employees/' + id)
+    }
+
     useEffect(() => {
         setData(
             props.employees.map(employee => ({
@@ -27,7 +43,17 @@ const ReactTable = props => {
                 col5: employee.color,
                 col6: employee.branch_name,
                 col7: employee.city,
-                col8: employee.assigned === 1 ? 'Yes' : 'No'
+                col8: employee.assigned === 1 ? 'Yes' : 'No',
+                col9: <FontAwesomeIcon 
+                    icon={faEdit}
+                    className="icon" 
+                    onClick={() => handleUpdateEmployee(employee.id)} 
+                />,
+                col10: <FontAwesomeIcon 
+                    icon={faTrashAlt}
+                    className="icon" 
+                    onClick={() => handleDeleteEmployee(employee.id)} 
+                />
             }))
         )
     }, [props.employees])
@@ -66,6 +92,14 @@ const ReactTable = props => {
             {
                 Header: 'Assigned',
                 accessor: 'col8'
+            },
+            {
+                Header: 'Update',
+                accessor: 'col9'
+            },
+            {
+                Header: 'Delete',
+                accessor: 'col10'
             }
         ],
         []
